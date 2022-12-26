@@ -1,0 +1,12 @@
+server {
+        listen 80;
+        server_name {{ server_name }} www.{{ server_name }};
+        index index.html;
+        root {{ document_root }}/{{ app_root }};
+        location / {
+        }
+        location /blog/ {
+                # autoindex on;
+        }
+        autoindex_localtime on;
+}

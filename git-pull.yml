@@ -1,0 +1,9 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+    - name: Pull latest changes from git
+      git:
+        repo: git@github.com:miketekin/my-portfolio.git
+        dest: /var/www/html
+      sudo_user: ubuntu # This is the user that owns the files
