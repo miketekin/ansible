@@ -1,9 +1,11 @@
----
-- hosts: all
-  become: yes
-  tasks:
-    - name: Pull latest changes from git
-      git:
-        repo: git@github.com:miketekin/my-portfolio.git
-        dest: /var/www/html
-      sudo_user: ubuntu # This is the user that owns the files
+# This isn't working and I don't love the solution anyway. I may try to avoid using ansible for this.
+# ---
+# - hosts: all
+#   become: yes
+#   vars:
+#     ansible_ssh_private_key_file: "~/Documents/ssh-key-2022-12-25.key" # Path to the private key to use for authentication
+#   tasks:
+#     - name: Pull latest changes from git
+#       git:
+#         repo: git@github.com:miketekin/my-portfolio.git
+#         dest: /var/www/html

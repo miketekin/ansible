@@ -4,24 +4,23 @@
   become: true # Run all tasks as root
   vars:
     # created_username: dev # Username to create - unnecessary on Oracle vps
-    ansible_ssh_private_key_file: "~/Documents/ssh-key-2022-12-25.key" # Path to the private key to use
+    ansible_ssh_private_key_file: "~/Documents/ssh-key-2022-12-25.key" # Path to the private key to use for authentication
 
   tasks:
     - name: Update apt and install latest required system packages
       apt:
-        pkg: # List of packages to install
+        pkg:
           # - ufw # Unnecessary on Oracle vps - already installed
           - fail2ban
           - git
-        state: latest # Make sure the latest version is installed
-        update_cache: true # Update apt cache before installing
+        state: latest
+        update_cache: true
 
     - name: Upgrade installed apt packages
       apt:
         upgrade: dist
-        state: latest # Make sure the latest version is installed
+        state: latest
         update_cache: true
-      register: upgrade # Register the result of this task
         
     - name: UFW - Allow SSH connections
       community.general.ufw:
@@ -38,7 +37,6 @@
         name: fail2ban
         enabled: true
         state: started
-      register: fail2ban
 
     # Unnecessary on Oracle vps - already set up
     #- name: Set up passwordless sudo
